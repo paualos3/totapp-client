@@ -5,6 +5,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseUserModel } from '../core/user.model';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
+
+interface Subjects {
+  name: string;
+  semester:string;
+  code:string;
+}
 
 @Component({
   selector: 'page-user',
@@ -12,6 +20,11 @@ import { FirebaseUserModel } from '../core/user.model';
   styleUrls: ['user.scss']
 })
 export class UserComponent implements OnInit{
+
+  //apiRoot = 'https://totapp-paualos3.c9users.io';
+  apiRoot = 'https://totapp-isa.herokuapp.com';
+  subjectsUrl = `${this.apiRoot}/api/subjects`;
+  subjects$: Observable<Subjects[]>;
 
   user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
@@ -21,7 +34,8 @@ export class UserComponent implements OnInit{
     public authService: AuthService,
     private route: ActivatedRoute,
     private location : Location,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http:HttpClient
   ) {
 
   }
@@ -34,6 +48,13 @@ export class UserComponent implements OnInit{
         this.createForm(this.user.name);
       }
     })
+    this.http.get(this.subjectsUrl).subscribe(data => {
+      console.log("We got", data)
+    })
+    /*this.subjects$ = this.http
+      .get<Subjects[]>(this.subjectsUrl)
+      .map(data => _.values(data))
+      .do(console.log);*/
   }
 
   createForm(name) {
