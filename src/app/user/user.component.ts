@@ -6,12 +6,13 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseUserModel } from '../core/user.model';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
 
 interface Subjects {
-  name: string;
-  semester:string;
   code:string;
+  data: {
+    name: string,
+    semester: number
+  }
 }
 
 @Component({
@@ -21,13 +22,13 @@ interface Subjects {
 })
 export class UserComponent implements OnInit{
 
-  //apiRoot = 'https://totapp-paualos3.c9users.io';
-  apiRoot = 'https://totapp-isa.herokuapp.com';
+  apiRoot = 'https://totapp-paualos3.c9users.io';
+  //apiRoot = 'https://totapp-isa.herokuapp.com';
   subjectsUrl = `${this.apiRoot}/api/subjects`;
-  subjects$: Observable<Subjects[]>;
 
   user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
+  subjects: Subjects[];
 
   constructor(
     public userService: UserService,
@@ -48,13 +49,12 @@ export class UserComponent implements OnInit{
         this.createForm(this.user.name);
       }
     })
-    this.http.get(this.subjectsUrl).subscribe(data => {
+    this.http.get(this.subjectsUrl).subscribe((data:any[]) => {
       console.log("We got", data)
+      console.log(data.length)
+      this.subjects = data;
+      console.log("1st subject", data[0].code, "name", data[0].data.name, "semester", data[0].data.semester)
     })
-    /*this.subjects$ = this.http
-      .get<Subjects[]>(this.subjectsUrl)
-      .map(data => _.values(data))
-      .do(console.log);*/
   }
 
   createForm(name) {

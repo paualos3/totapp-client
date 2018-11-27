@@ -23,3 +23,23 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div id="customer-table">
+        <table class="table table-hover">
+          <thead>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Semester</th>
+          </thead>
+          <tr *ngFor="let subject of subjects">
+            <td><a href="/subjects/{{subject.code}}">{{subject.code}}</a></td>
+            <td><a href="">{{subject.data.name}}</a></td>
+            <td><a href="">{{subject.data.semester}}</a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
