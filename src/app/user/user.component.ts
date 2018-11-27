@@ -49,13 +49,17 @@ export class UserComponent implements OnInit{
         this.createForm(this.user.name);
       }
     })
+    this.fetchSubjects();
+  }
+
+  fetchSubjects() {
     this.http.get(this.subjectsUrl).subscribe((data:any[]) => {
       console.log("We got", data)
       console.log(data.length)
       this.subjects = data;
       console.log("1st subject", data[0].code, "name", data[0].data.name, "semester", data[0].data.semester)
     })
-  }
+  };
 
   createForm(name) {
     this.profileForm = this.fb.group({

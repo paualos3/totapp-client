@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div id="customer-table">
+        <table class="table table-hover">
+          <thead>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Subject</th>
+          <th>Description</th>
+          <th></th>
+          </thead>
+          <tr *ngFor="let file of files">
+            <td>{{file.data.name}}</td>
+            <td>{{file.data.author}}</td>
+            <td>{{file.data.subject}}</td>
+            <td>{{file.data.description}}</td>
+            <td><a href="{{file.data.url}}" class="btn btn-default">Download</a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
