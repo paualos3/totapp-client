@@ -27,27 +27,38 @@ export class SubjectComponent implements OnInit{
 
   user: FirebaseUserModel = new FirebaseUserModel();
   files: Files[];
-
+  id = 0;
   constructor(
     private route: ActivatedRoute,
     private location : Location,
     private fb: FormBuilder,
     private http:HttpClient
   ) {
-
+    this.route.params.subscribe( params => {
+      console.log(params)
+      this.id = params.id
+    })
   }
 
   ngOnInit(): void {
+    console.log(this.id)
     this.fetchFiles();
   }
 
   fetchFiles() {
     console.log(this.route.snapshot.url); // array of states
     console.log(this.route.snapshot.url[0].path);
-    this.http.get(this.subjectsUrl).subscribe((data:any[]) => {
-      console.log("We got", data)
-      console.log(data.length)
-      this.files = data;
-    })
+    if(this.id)
+      this.http.get(this.subjectsUrl+'?subjectCode='+this.id).subscribe((data:any[]) => {
+        console.log("We got", data)
+        console.log(data.length)
+        this.files = data;
+      })
+    else
+      this.http.get(this.subjectsUrl).subscribe((data:any[]) => {
+        console.log("We got", data)
+        console.log(data.length)
+        this.files = data;
+      })
   };
 }
