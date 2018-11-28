@@ -37,14 +37,6 @@ export class RegisterComponent {
      )
    }
 
-   tryTwitterLogin(){
-     this.authService.doTwitterLogin()
-     .then(res =>{
-       this.router.navigate(['/user']);
-     }, err => console.log(err)
-     )
-   }
-
    tryGoogleLogin(){
      this.authService.doGoogleLogin()
      .then(res =>{
