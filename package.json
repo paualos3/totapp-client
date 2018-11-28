@@ -33,9 +33,7 @@
     "rxjs-compat": "^6.3.3",
     "zone.js": "^0.8.14",
     "@angular/cli": "^1.5.2",
-    "@angular/compiler-cli": "5.2.0"
-  },
-  "devDependencies": {
+    "@angular/compiler-cli": "5.2.0",
     "@angular/language-service": "5.2.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
