@@ -29,6 +29,7 @@
     "ngx-bootstrap": "^1.9.3",
     "node-sass": "^4.5.3",
     "npm": "^6.4.1",
+    "node": "9.8.0",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
     "zone.js": "^0.8.14"
