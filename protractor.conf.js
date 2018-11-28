@@ -1,12 +1,12 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
-/*const { SpecReporter } = require('jasmine-spec-reporter');
+const { SpecReporter } = require('jasmine-spec-reporter');
 
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './e2e/**//**.e2e-spec.ts'
+    './e2e/**/*.e2e-spec.ts'
   ],
   capabilities: {
     'browserName': 'chrome'
@@ -26,19 +26,3 @@ exports.config = {
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
 };
-*/
-exports.config = {
-  capabilities: {
-    browserName: 'chrome'
-  },
-  onPrepare: './test/e2e/init.js',
-
-  framework: 'mocha',
-  specs: [
-    'test/e2e/**/*.spec.js'
-  ],
-
-  mochaOpts: {
-    enableTimeouts: false
-  }
-}
